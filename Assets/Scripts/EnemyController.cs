@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
         TryGetComponent(out anim);
 
         // 移動する地点を取得
-        paths = pathData.pathTranArray.Select(x => x.position).ToArray();
+        paths = pathData.pathTranArray.Select(pathTran => pathTran.position).ToArray();
 
         // 移動する地点を取得するための配列の初期化
         // paths = new Vector3[pathData.pathTranArray.Length];
@@ -68,7 +68,7 @@ public class EnemyController : MonoBehaviour
         anim.SetFloat("X", direction.x);
         anim.SetFloat("Y", direction.y);
 
-       // if (transform.position.x > paths[index].x) //条件式の右辺を変更します。演算子の方向に注意してください
+       // if (transform.position.pathTran > paths[index].pathTran) //条件式の右辺を変更します。演算子の方向に注意してください
         //{
             //anim.SetFloat("Y", 0f);
             //anim.SetFloat("X", -1.0f);
