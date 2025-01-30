@@ -28,7 +28,9 @@ public class EnemyController : MonoBehaviour
     //private Vector3 currentPos; // 敵キャラの現在の位置情報
 
     // Start is called before the first frame update
-    void Start()
+
+    // 敵の設定
+    public void SetUpEnemyController(Vector3[] pathsData) //　<=　☆①　public 修飾子を追加し、Start メソッドを SetUpEnemyController メソッドに変更し、引数を追加します。
     {
 
         hp = maxHp;
@@ -37,11 +39,13 @@ public class EnemyController : MonoBehaviour
         TryGetComponent(out anim);
 
         // 移動する地点を取得
-        paths = pathData.pathTranArray.Select(pathTran => pathTran.position).ToArray();
+        paths = pathsData; //<=  ☆②　引数で必要な情報が届いているので代入処理に変更します
 
         // 各地点に向けて移動。今後この処理を制御するため、Tween 型の変数に DOPath メソッドの処理を代入しておく
         tween = transform.DOPath(paths, 1000 / moveSpeed).SetEase(Ease.Linear).OnWaypointChange(ChangeAnimeDirection); //<= DOPath の処理を tween 変数に代入します
 
+        //移動を一時停止
+        PauseMove();
         // 移動する地点を取得するための配列の初期化
         // paths = new Vector3[pathData.pathTranArray.Length];
 
@@ -58,8 +62,8 @@ public class EnemyController : MonoBehaviour
 
     //private void Update()
     //{
-        // 敵の進行方向を取得
-        //ChangeAnimeDirection();
+    // 敵の進行方向を取得
+    //ChangeAnimeDirection();
 
     //}
 
@@ -150,6 +154,16 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    // 移動を一時停止
+    public void PauseMove()
+    {
+        tween.Pause();
+    }
 
+    // 移動を開始
+    public void ResumeMove()
+    {
+        tween.Play();
+    }
 
 }
