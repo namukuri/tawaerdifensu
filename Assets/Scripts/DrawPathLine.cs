@@ -3,10 +3,10 @@ using UnityEngine;
 public class DrawPathLine : MonoBehaviour
 {
     [SerializeField]
-    private float startLineWidth = 0.5f;
+    private float startLineWidth = 1.5f;
 
     [SerializeField]
-    private float endLineWidth = 0.5f;
+    private float endLineWidth = 1.5f;
 
     // Œo˜H—p‚Ìƒ‰ƒCƒ“¶¬
     public void CreatePathLine(Vector3[] drawPaths)

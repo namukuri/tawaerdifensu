@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040fae8721f481749bc826452e00c795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLineWidth: 0.5
-  endLineWidth: 0.5
+  startLineWidth: 1.5
+  endLineWidth: 1.5
