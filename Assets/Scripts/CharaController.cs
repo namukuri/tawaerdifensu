@@ -15,7 +15,13 @@ public class CharaController : MonoBehaviour
 
     [SerializeField]
     private EnemyController enemy;
-        
+
+    [SerializeField]
+    private int attackCount = 3; //TODO 現在の攻撃回数の残り。あとで CharaData クラスの値を反映させる
+
+    [SerializeField]
+    private UnityEngine.UI.Text txtAttackCount;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 攻撃中ではない場合で、かつ、敵の情報を未取得である場合
@@ -27,15 +33,18 @@ public class CharaController : MonoBehaviour
 
             // 敵の情報(EnemyController)を取得する。EnemyController がアタッチされているゲームオブジェクトを判別しているので、ここで、今までの Tag による判定と同じ動作で判定が行えます。
             // そのため、☆①の処理から Tag の処理を削除しています
-            if (collision.gameObject.TryGetComponent(out enemy))
+            if (collision.CompareTag("Enemy"))
             {
-                // 情報を取得できたら、攻撃状態にする
-                isAttack = true;
 
-                // 攻撃の準備に入る
-                StartCoroutine(PrepareteAttack());
+                if (collision.gameObject.TryGetComponent(out enemy))
+                {
+                    // 情報を取得できたら、攻撃状態にする
+                    isAttack = true;
+
+                    // 攻撃の準備に入る
+                    StartCoroutine(PrepareteAttack());
+                }
             }
-
         }        
     }
 
@@ -64,6 +73,17 @@ public class CharaController : MonoBehaviour
                 Attack();
 
                 // TODO 攻撃回数関連の処理をここに記述する
+                attackCount--;
+
+                // TODO 残り攻撃回数の表示更新
+                UpdateDisplayAttackCount();
+
+                // 攻撃回数がなくなったら
+                if (attackCount <= 0)
+                {
+                    // キャラ破壊
+                    Destroy(gameObject);
+                }
             }
 
             // １フレーム処理を中断する(この処理を書き忘れると無限ループになり、Unity エディターが動かなくなって再起動することになります。注意！)
@@ -95,6 +115,12 @@ public class CharaController : MonoBehaviour
             isAttack = false;
             enemy = null;
         }
+    }
+
+    // 残り攻撃回数の表示更新
+    private void UpdateDisplayAttackCount()
+    {
+        txtAttackCount.text = attackCount.ToString();
     }
 
 
