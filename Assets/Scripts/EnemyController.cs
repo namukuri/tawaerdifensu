@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim; // Animator コンポーネントの取得用
 
+    public int attackPower;
+
     //private Vector3 currentPos; // 敵キャラの現在の位置情報
 
     // Start is called before the first frame update

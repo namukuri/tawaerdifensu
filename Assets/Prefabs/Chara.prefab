@@ -225,3 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccb63a2a751ab4468aa406fde2ffb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPower: 3
+  intervalAttackTime: 60
+  isAttack: 0
+  enemy: {fileID: 0}
