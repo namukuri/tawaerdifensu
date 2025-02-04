@@ -27,6 +27,9 @@ public class DefenseBase : MonoBehaviour
         {
             // 敵キャラの攻撃力分だけ耐久力を減算し、耐久力の値の下限と上限内に収まるように制御した上で更新
             defenseBaseDurability = Mathf.Clamp(defenseBaseDurability - enemyController.attackPower, 0, maxDefenseBaseDurability);
+
+            // 敵の破壊
+            enemyController.DestroyEnemy();
         }
 
         // TODO ダメージ演出生成
@@ -41,8 +44,7 @@ public class DefenseBase : MonoBehaviour
             // TODO ゲームオーバー処理
         }
 
-        // 敵の破壊
-        enemyController.DestroyEnemy();
+        
     }
 
     // TODOダメージ演出生成用のメソッドの作成

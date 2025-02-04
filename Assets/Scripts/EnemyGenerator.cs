@@ -101,13 +101,13 @@ public class EnemyGenerator : MonoBehaviour
         // TODO を実装
 
         // 移動する地点を取得(<=　いままでEnemyController スクリプト内で行っていた処理をこちらに移動します)
-        Vector3[] paths = pathDatas[randomValue].pathTranArray.Select(x => x.position).ToArray(); //　<=　☆③　検索対象を配列の要素番号を参照するように修正します
+        Vector3[] pathdatas = pathDatas[randomValue].pathTranArray.Select(x => x.position).ToArray(); //　<=　☆③　検索対象を配列の要素番号を参照するように修正します
 
         // 敵キャラの初期設定を行い、移動を一時停止しておく
-        enemyController.SetUpEnemyController(paths);
+        enemyController.SetUpEnemyController(pathdatas);
 
         // 敵の移動経路のライン表示を生成の準備
-        StartCoroutine(PreparateCreatePathLine(paths, enemyController));
+        StartCoroutine(PreparateCreatePathLine(pathdatas, enemyController));
 
     }
 

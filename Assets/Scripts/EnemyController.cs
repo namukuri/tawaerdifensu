@@ -139,6 +139,7 @@ public class EnemyController : MonoBehaviour
         // TODO 演出用のエフェクト生成
 
         // TODO ヒットストップ演出
+        StartCoroutine(WaitMove());
     }
 
     // 敵破壊処理
@@ -166,6 +167,16 @@ public class EnemyController : MonoBehaviour
     public void ResumeMove()
     {
         tween.Play();
+    }
+
+    // ヒットストップ演出
+    private IEnumerator WaitMove()
+    {
+        tween.timeScale = 0.05f;
+
+        yield return new WaitForSeconds(0.5f);
+
+        tween.timeScale = 1.0f;
     }
 
 }
