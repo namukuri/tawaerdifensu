@@ -91,7 +91,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         // TODO 各キャラのボタンの制御
 
         // ポップアップの非表示
-        //canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp()); // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
+        canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp()); // 次の手順でメソッドを追加するので、それまでコメントアウトしておいてください。
     }
    
 }

@@ -2193,6 +2193,8 @@ MonoBehaviour:
   charaPrefab: {fileID: 7672080096794435682, guid: c71ce92c7ca1cde48b7669990cb39ad5, type: 3}
   grid: {fileID: 1948041850}
   tilemaps: {fileID: 479530573}
+  placementcharaSelectPopUpPrefab: {fileID: 6962838535960850950, guid: 0bc01be2583708e42943af253d019b47, type: 3}
+  canvasTran: {fileID: 10395864}
 --- !u!4 &628619936
 Transform:
   m_ObjectHideFlags: 0
@@ -8105,6 +8107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGenerator: {fileID: 1955694907}
+  charaGenerator: {fileID: 628619935}
   isEnemyGenerate: 0
   generateIntervalTime: 400
   generateEnemyCount: 0
