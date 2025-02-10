@@ -2223,7 +2223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abfdca0ebb5b45428928cc019c0b237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charaPrefab: {fileID: 7672080096794435682, guid: c71ce92c7ca1cde48b7669990cb39ad5, type: 3}
+  charaControllerPrefab: {fileID: 5045568329743973855, guid: c71ce92c7ca1cde48b7669990cb39ad5, type: 3}
   grid: {fileID: 1948041850}
   tilemaps: {fileID: 479530573}
   placementCharaSelectPopUpPrefab: {fileID: 6962838535960850950, guid: 0bc01be2583708e42943af253d019b47, type: 3}

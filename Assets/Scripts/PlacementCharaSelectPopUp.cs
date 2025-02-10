@@ -48,7 +48,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
                                     
     private CharaData chooseCharaData; //現在選択しているキャラの情報を管理する
                       
-    // TODO 制御を行いたい各コンポーネントの情報をアサインするための変数群を追加する
+   
 
     // ポップアップの設定
     public void SetUpPlacementCharaSelectPopUp(CharaGenerator charaGenerator, List<CharaData> haveCharaDataList)
@@ -117,6 +117,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
         // TODO コストの支払いが可能か最終確認
 
         // TODO 選択しているキャラの生成
+        charaGenerator.CreateChooseChara(chooseCharaData);
 
         // ポップアップの非表示
         HidePopUp();

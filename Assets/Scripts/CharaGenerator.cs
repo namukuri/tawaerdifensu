@@ -5,10 +5,15 @@ using UnityEngine.Tilemaps; //　<=　タイルマップの機能を扱うために必要な宣言を追
 
 public class CharaGenerator : MonoBehaviour
 {
+    //[SerializeField]
+    //private GameObject charaPrefab; // キャラのプレファブの登録用
+
     [SerializeField]
-    private GameObject charaPrefab; // キャラのプレファブの登録用
+    private CharaController charaControllerPrefab; //<=　☆　新しく、CharaCotroller 型で変数を宣言します。アサインするプレファブは同じものです
+
     [SerializeField]
     private Grid grid; // タイルマップの座標を取得するための情報。Grid_Base 側の Grid を指定する 
+
     [SerializeField]
     private Tilemap tilemaps; // Walk 側の Tilemap を指定する
 
@@ -53,14 +58,14 @@ public class CharaGenerator : MonoBehaviour
     }
 
     // キャラ生成
-    private void CreateChara(Vector3Int gridPos)
-    {
+    //private void CreateChara(Vector3Int gridPos)
+    //{
         // タップした位置にキャラを生成して配置
-        GameObject chara = Instantiate(charaPrefab, gridPos, Quaternion.identity);
+        //GameObject chara = Instantiate(charaPrefab, gridPos, Quaternion.identity);
 
         // キャラの位置がタイルの左下を 0,0 として生成しているので、タイルの中央にくるように位置を調整
-        chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
-    }
+        //chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
+    //}
 
     // 設定
     public IEnumerator SetUpCharaGenerator(GameManager gameManager)
@@ -128,5 +133,23 @@ public class CharaGenerator : MonoBehaviour
             charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
         }
     }
+
+    // 選択したキャラを生成して配置
+    public void CreateChooseChara(CharaData charaData)
+    {
+        // TODO コスト支払い
+
+        // キャラをタップした位置に生成
+        CharaController chara = Instantiate(charaControllerPrefab, gridPos, Quaternion.identity);
+
+        // 位置が左下を 0,0 としているので、中央にくるように調整
+        chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
+
+        // TODO キャラの設定
+        //chara.SetUpChara(charaData, gameManager);
+
+        // TODO キャラを List に追加
+    }
+
 
 }
