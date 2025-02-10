@@ -13,10 +13,13 @@ public class CharaGenerator : MonoBehaviour
     private Tilemap tilemaps; // Walk 側の Tilemap を指定する
 
     [SerializeField]
-    private PlacementCharaSelectPopUp placementcharaSelectPopUpPrefab; //　PlacementCharaSelectPopUp プレファブゲームオブジェクトをアサイン用
+    private PlacementCharaSelectPopUp placementCharaSelectPopUpPrefab; //　PlacementCharaSelectPopUp プレファブゲームオブジェクトをアサイン用
 
     [SerializeField]
     private Transform canvasTran; //　PlacementCharaSelectPopUp ゲームオブジェクトの生成位置の登録用
+
+    [SerializeField, Header("キャラのデータリスト")]
+    private List<CharaData> charaDatasList = new List<CharaData>();
 
     private PlacementCharaSelectPopUp placementCharaSelectPopUp; //　生成された PlacementCharaSelectPopUp ゲームオブジェクトを代入するための変数
 
@@ -29,8 +32,8 @@ public class CharaGenerator : MonoBehaviour
     {
         // TODO 配置できる最大キャラ数に達している場合には配置できない
 
-        // 画面をタップ(マウスクリック)したら
-        if(Input.GetMouseButtonDown(0) && !placementCharaSelectPopUp.gameObject.activeSelf)
+        // 画面をタップ(マウスクリック)し、かつ、配置キャラポップアップが非表示状態なら
+        if (Input.GetMouseButtonDown(0) && !placementCharaSelectPopUp.gameObject.activeSelf)
         {
             // タップ(マウスクリック)の位置を取得してワールド座標に変換し、それをさらにタイルのセル座標に変換
             gridPos = grid.WorldToCell(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -67,6 +70,7 @@ public class CharaGenerator : MonoBehaviour
         // TODO ステージのデータを取得
 
         // TODO キャラのデータをリスト化
+        CreateHaveCharaDatasList();
 
         // キャラ配置用のポップアップの生成
         yield return StartCoroutine(CreatePlacementCharaSelectPopUp());
@@ -76,10 +80,10 @@ public class CharaGenerator : MonoBehaviour
     // 配置キャラ選択用ポップアップ生成
     private IEnumerator CreatePlacementCharaSelectPopUp()
     {
-        // ポップアップを生成
-        placementCharaSelectPopUp = Instantiate(placementcharaSelectPopUpPrefab, canvasTran, false);
+        // ポップアップを生成。キャラ設定用の情報も渡す。
+        placementCharaSelectPopUp = Instantiate(placementCharaSelectPopUpPrefab, canvasTran, false);
         // TODO あとでキャラ設定用の情報も渡す
-        placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this);
+        placementCharaSelectPopUp.SetUpPlacementCharaSelectPopUp(this, charaDatasList); //第2引数を追加します
 
         // ポップアップを非表示にする
         placementCharaSelectPopUp.gameObject.SetActive(false);
@@ -112,6 +116,17 @@ public class CharaGenerator : MonoBehaviour
         // TODO すべての敵の移動を再開
 
         // TODO カレンシーの加算処理を再開
+    }
+
+    // キャラのデータをリスト化
+    private void CreateHaveCharaDatasList()
+    {
+        // CharaDataSO スクリプタブル・オブジェクト内の CharaData を１つずつリストに追加
+        // TODO スクリプタブル・オブジェクトではなく、実際にプレイヤーが所持しているキャラの番号を元にキャラのデータのリストを作成
+        for (int i = 0; i < DataBaseManager.instance.charaDataSO.charaDatasList.Count; i++)
+        {
+            charaDatasList.Add(DataBaseManager.instance.charaDataSO.charaDatasList[i]);
+        }
     }
 
 }

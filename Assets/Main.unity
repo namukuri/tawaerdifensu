@@ -229,6 +229,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1008768107784330435, guid: 136cef32c7d72bd4d837a99beb3442fa, type: 3}
   m_PrefabInstance: {fileID: 5634685466226163022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &215208527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 215208529}
+  - component: {fileID: 215208528}
+  m_Layer: 0
+  m_Name: DataBaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &215208528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215208527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c84895a8bd935c4287823ab3ccd48f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charaDataSO: {fileID: 11400000, guid: 280f01855a2d7dd4e9583be3e34a7ed0, type: 2}
+--- !u!4 &215208529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215208527}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449072534
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,8 +2232,9 @@ MonoBehaviour:
   charaPrefab: {fileID: 7672080096794435682, guid: c71ce92c7ca1cde48b7669990cb39ad5, type: 3}
   grid: {fileID: 1948041850}
   tilemaps: {fileID: 479530573}
-  placementcharaSelectPopUpPrefab: {fileID: 6962838535960850950, guid: 0bc01be2583708e42943af253d019b47, type: 3}
+  placementCharaSelectPopUpPrefab: {fileID: 6962838535960850950, guid: 0bc01be2583708e42943af253d019b47, type: 3}
   canvasTran: {fileID: 10395864}
+  charaDatasList: []
 --- !u!4 &628619936
 Transform:
   m_ObjectHideFlags: 0
@@ -8115,7 +8161,7 @@ Transform:
   m_GameObject: {fileID: 1856785898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.38584825, y: -3.4647071, z: -0.10181516}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8326,3 +8372,4 @@ SceneRoots:
   - {fileID: 454174058}
   - {fileID: 10395864}
   - {fileID: 449072537}
+  - {fileID: 215208529}
