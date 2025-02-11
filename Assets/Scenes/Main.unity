@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charaDataSO: {fileID: 11400000, guid: 280f01855a2d7dd4e9583be3e34a7ed0, type: 2}
+  attackRangeSizeSO: {fileID: 11400000, guid: 6b70b10a4ad56a4419b4372475294438, type: 2}
 --- !u!4 &215208529
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private CharaGenerator charaGenerator;
-
+    
     public bool isEnemyGenerate;  // ここに EnemyGenerator スクリプト側の変数を４つ移管します
 
     public int generateIntervalTime;

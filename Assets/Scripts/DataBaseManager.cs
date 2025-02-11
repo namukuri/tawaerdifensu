@@ -6,6 +6,8 @@ public class DataBaseManager : MonoBehaviour
 
     public CharaDataSO charaDataSO;
 
+    public AttackRangeSizeSO attackRangeSizeSO;
+
     void Awake()
     {
         if (instance == null)
@@ -18,5 +20,11 @@ public class DataBaseManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
+    // AttackRangeType ‚©‚ç BoxCollier —p‚Ì Size ‚ðŽæ“¾
+    public Vector2 GetAttackRangeSize(AttackRangeType attackRangeType)
+    {
+        return attackRangeSizeSO.attackRangeSizeList.Find(x => x.attackRangeType == attackRangeType).size;
+    }
+
 }

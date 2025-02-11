@@ -410,6 +410,17 @@ MonoBehaviour:
   enemy: {fileID: 0}
   attackCount: 3
   txtAttackCount: {fileID: 5678983185164803483}
+  attackRangeArea: {fileID: 8418708786224283795}
+  charaData:
+    charaNo: 0
+    cost: 0
+    charaSprite: {fileID: 0}
+    charaName: 
+    attackPower: 0
+    attackRange: 0
+    intervalAttackTime: 0
+    maxAttackCount: 0
+    discription: 
 --- !u!1 &7877214016507408198
 GameObject:
   m_ObjectHideFlags: 0
