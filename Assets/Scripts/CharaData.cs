@@ -17,6 +17,8 @@ public class CharaData
     [Multiline]
     public string discription;
 
+    public AnimationClip charaAmim;
+
     // TODO ‘¼‚É‚à‚ ‚ê‚Î’Ç‰Á
         
 }

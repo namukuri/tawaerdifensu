@@ -79,6 +79,15 @@ public class CharaController : MonoBehaviour
                 // 次の攻撃に備えて、待機時間のタイマーをリセット
                 timer = 0;
 
+                // ここで null 判定
+                if(enemy = null)
+                {
+                    // 敵がいないなら攻撃状態を解除してループを抜ける
+                    isAttack = false;
+
+                    break;
+                }
+
                 // 攻撃
                 Attack();
 
@@ -105,6 +114,15 @@ public class CharaController : MonoBehaviour
     private void Attack()
     {
         Debug.Log("攻撃");
+
+        if(enemy == null)
+        {
+            // nullなら攻撃ループから抜ける、あるいはreturnする、isAttackをfalseにする等
+            isAttack = false;
+
+            return;
+
+        }
 
         // TODO キャラの上に攻撃エフェクトを生成
 

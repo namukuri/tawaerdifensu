@@ -22,6 +22,7 @@ MonoBehaviour:
     intervalAttackTime: 120
     maxAttackCount: 3
     discription: "\u6B74\u6226\u306E\u9B54\u8853\u5E2B\u3002\u30B3\u30B9\u30C8\u304C\u5B89\u304F\u3001\u653B\u6483\u56DE\u6570\u304C\u591A\u3044\u3002"
+    charaAmim: {fileID: 7400000, guid: c5d0088f304ba3f469c7a8748929d9de, type: 2}
   - charaNo: 1
     cost: 200
     charaSprite: {fileID: -1813103212, guid: d9198baa10efa37458d5877c8af52f99, type: 3}
@@ -31,6 +32,7 @@ MonoBehaviour:
     intervalAttackTime: 200
     maxAttackCount: 2
     discription: 
+    charaAmim: {fileID: 7400000, guid: 237bfc251b996064c8b1ad0d2206d7f2, type: 2}
   - charaNo: 2
     cost: 300
     charaSprite: {fileID: -381361954, guid: baf37086da3b61445b14f37f552e988e, type: 3}
@@ -40,6 +42,7 @@ MonoBehaviour:
     intervalAttackTime: 0
     maxAttackCount: 0
     discription: 
+    charaAmim: {fileID: 0}
   - charaNo: 3
     cost: 400
     charaSprite: {fileID: 196040440, guid: baf37086da3b61445b14f37f552e988e, type: 3}
@@ -49,6 +52,7 @@ MonoBehaviour:
     intervalAttackTime: 0
     maxAttackCount: 0
     discription: 
+    charaAmim: {fileID: 0}
   - charaNo: 4
     cost: 500
     charaSprite: {fileID: 370250892, guid: baf37086da3b61445b14f37f552e988e, type: 3}
@@ -58,3 +62,4 @@ MonoBehaviour:
     intervalAttackTime: 0
     maxAttackCount: 0
     discription: 
+    charaAmim: {fileID: 0}
