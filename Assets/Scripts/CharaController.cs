@@ -30,8 +30,14 @@ public class CharaController : MonoBehaviour
 
     private GameManager gameManager;
 
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
 
+    private Animator anim;
+
+    private string overrideClipName = "Chara_0";
+
+    private AnimatorOverrideController overrideController;
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         // 攻撃中ではない場合で、かつ、敵の情報を未取得である場合
@@ -80,7 +86,7 @@ public class CharaController : MonoBehaviour
                 timer = 0;
 
                 // ここで null 判定
-                if(enemy = null)
+                if(enemy == null)
                 {
                     // 敵がいないなら攻撃状態を解除してループを抜ける
                     isAttack = false;
@@ -126,8 +132,6 @@ public class CharaController : MonoBehaviour
 
         // TODO キャラの上に攻撃エフェクトを生成
 
-        // TODO 敵キャラ側に用意したダメージ計算用のメソッドを呼び出して、敵にダメージを与える
-
         // 敵キャラ側に用意したダメージ計算用のメソッドを呼び出して、敵にダメージを与える
         enemy.CulcDamage(attackPower);
 
@@ -171,13 +175,44 @@ public class CharaController : MonoBehaviour
         UpdateDisplayAttackCount();
 
         // キャラ画像の設定。アニメを利用するようになったら、この処理はやらない
-        if(TryGetComponent(out spriteRenderer))
-        {
-            // 画像を配置したキャラの画像に差し替える
-            spriteRenderer.sprite = this.charaData.charaSprite;
-        }
+        //if(TryGetComponent(out spriteRenderer))
+        //{
+        // 画像を配置したキャラの画像に差し替える
+        //spriteRenderer.sprite = this.charaData.charaSprite;
+        //}
 
         // TODO キャラごとの AnimationClip を設定
+        SetUpAnimation();
         
+    }
+
+    // Motion に登録されている AnimationClip を変更
+    private void SetUpAnimation()
+    {
+        if (TryGetComponent(out anim))
+        {
+            overrideController = new AnimatorOverrideController();
+
+            overrideController.runtimeAnimatorController = anim.runtimeAnimatorController;
+            anim.runtimeAnimatorController = overrideController;
+
+            AnimatorStateInfo[] layerInfo = new AnimatorStateInfo[anim.layerCount];
+
+            for (int i = 0; i < anim.layerCount; i++)
+            {
+                layerInfo[i] = anim.GetCurrentAnimatorStateInfo(i);
+            }
+
+            overrideController[overrideClipName] = this.charaData.charaAnim;
+
+            anim.runtimeAnimatorController = overrideController;
+
+            anim.Update(0.0f);
+
+            for (int i = 0; i < anim.layerCount; i++)
+            {
+                anim.Play(layerInfo[i].fullPathHash, i, layerInfo[i].normalizedTime);
+            }
+        }
     }
 }
