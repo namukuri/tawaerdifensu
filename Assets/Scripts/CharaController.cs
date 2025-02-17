@@ -34,7 +34,7 @@ public class CharaController : MonoBehaviour
 
     private Animator anim;
 
-    private string overrideClipName = "Chara_0";
+    private string overrideClipName = "Chara";
 
     private AnimatorOverrideController overrideController;
     
@@ -204,6 +204,8 @@ public class CharaController : MonoBehaviour
             }
 
             overrideController[overrideClipName] = this.charaData.charaAnim;
+
+            Debug.Log("overrideController[overrideClipName]" + overrideController[overrideClipName]);
 
             anim.runtimeAnimatorController = overrideController;
 

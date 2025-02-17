@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
     // 敵の進行方向を取得して、移動アニメと同期
     private void ChangeAnimeDirection(int index) //引数を追加します
     {
-        Debug.Log(index); //　<=　☆①　最終的な確認が終了したら、あとでコメントアウトしておきましょう
+        Debug.Log("パスの番号," + index); //　<=　☆①　最終的な確認が終了したら、あとでコメントアウトしておきましょう
 
         // 次の移動先の地点がない場合には、ここで処理を終了する
         if (index >= paths.Length)
