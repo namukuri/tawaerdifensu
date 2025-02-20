@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public GameState currentGameState; // 現在の GameState の状態。上記の GameState の列挙子が１つだけ代入されるので、他の GameState と競合しない
 
+    public List<EnemyController>enemiesList = new List<EnemyController>(); //　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,9 +63,10 @@ public class GameManager : MonoBehaviour
     }
 
     // 敵の情報を List に追加
-    public void AddEnemyList() //　TODO　敵の情報を List に追加する際に、引数を追加
+    public void AddEnemyList(EnemyController enemy) //　TODO　敵の情報を List に追加する際に、引数を追加
     {
-        //　TODO　敵の情報を List に追加
+        //敵の情報を List に追加
+        enemiesList.Add(enemy);
 
         // 敵の生成数をカウントアップ
         generateEnemyCount++;
@@ -83,8 +86,31 @@ public class GameManager : MonoBehaviour
     public void SetGameState(GameState nextGameState)
     {
         currentGameState = nextGameState;
-    } 
+    }
+
+    // すべての敵の移動を一時停止
+    public void PauseEnemies()
+    {
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            enemiesList[i].PauseMove();
+        }
+    }
+
+    // すべての敵の移動を再開
+    public void ResumeEnemies()
+    {
+        for (int i = 0; i < enemiesList.Count; i++)
+        {
+            enemiesList[i].ResumeMove();
+        }
+    }
+
+    // 敵の情報を List から削除
+    public void RemoveEnemyList(EnemyController removeEnemy)
+    {
+        enemiesList.Remove(removeEnemy);
+    }     
 
 }
 
-     
