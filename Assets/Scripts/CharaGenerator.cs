@@ -100,8 +100,10 @@ public class CharaGenerator : MonoBehaviour
     public void ActivatePlacementCharaSelectPopUp()
     {
         // TODO ゲームの進行状態をゲーム停止に変更
+        gameManager.SetGameState(GameManager.GameState.Stop);
 
         // TODO すべての敵の移動を一時停止
+        gameManager.PauseEnemies();
 
         // 配置キャラ選択用のポップアップの表示
         placementCharaSelectPopUp.gameObject.SetActive(true);
@@ -115,12 +117,16 @@ public class CharaGenerator : MonoBehaviour
         placementCharaSelectPopUp.gameObject.SetActive(false);
 
         // TODO ゲームオーバーやゲームクリアではない場合
+        if (gameManager.currentGameState == GameManager.GameState.Stop)
+        {
+            // TODO ゲームの進行状態をプレイ中に変更して、ゲーム再開
+            gameManager.SetGameState(GameManager.GameState.Play);
 
-        // TODO ゲームの進行状態をプレイ中に変更して、ゲーム再開
+            // TODO すべての敵の移動を再開
+            gameManager.ResumeEnemies();
 
-        // TODO すべての敵の移動を再開
-
-        // TODO カレンシーの加算処理を再開
+            // TODO カレンシーの加算処理を再開
+        }
     }
 
     // キャラのデータをリスト化
@@ -146,7 +152,9 @@ public class CharaGenerator : MonoBehaviour
         chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
 
         // TODO キャラの設定
-        chara.SetUpChara(charaData, gameManager);
+        //chara.SetUpChara(charaData, gameManager);
+
+        Debug.Log(charaData.charaName);
 
         // TODO キャラを List に追加
     }
