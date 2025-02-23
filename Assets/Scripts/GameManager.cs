@@ -31,8 +31,10 @@ public class GameManager : MonoBehaviour
 
     public GameState currentGameState; // 現在の GameState の状態。上記の GameState の列挙子が１つだけ代入されるので、他の GameState と競合しない
 
-    public List<EnemyController>enemiesList = new List<EnemyController>(); //　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
+    [SerializeField]
+    private List<EnemyController>enemiesList = new List<EnemyController>(); //　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
 
+    private int destoroyEnemyCount; //  敵を破壊した数のカウント用
 
     // Start is called before the first frame update
     void Start()
@@ -110,7 +112,34 @@ public class GameManager : MonoBehaviour
     public void RemoveEnemyList(EnemyController removeEnemy)
     {
         enemiesList.Remove(removeEnemy);
-    }     
+    }
+
+    // 破壊した敵の数をカウント(このメソッドを外部のクラスから実行してもらう)
+    public void CountUpDestroyEnemyCount(EnemyController enemyController)
+    {
+        // List から破壊された敵の情報を削除
+        RemoveEnemyList(enemyController);
+
+        // 敵を破壊した数を加算
+        destoroyEnemyCount++;
+
+        Debug.Log("破壊した敵の数:" + destoroyEnemyCount);
+
+        // ゲームクリア判定
+        JudgeGameClear();
+    }
+
+    // ゲームクリア判定
+    public void JudgeGameClear()
+    {
+        // 生成数を超えているか
+        if(destoroyEnemyCount >= maxEnemyCount)
+        {
+            Debug.Log("ゲームクリア");
+
+            // TODO ゲームクリアの処理を追加
+        }
+    }
 
 }
 

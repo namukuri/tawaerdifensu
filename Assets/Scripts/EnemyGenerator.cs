@@ -96,7 +96,7 @@ public class EnemyGenerator : MonoBehaviour
         Vector3[] pathdatas = pathDatas[randomValue].pathTranArray.Select(x => x.position).ToArray(); //Å@<=Å@ÅôáBÅ@åüçıëŒè€ÇîzóÒÇÃóvëfî‘çÜÇéQè∆Ç∑ÇÈÇÊÇ§Ç…èCê≥ÇµÇ‹Ç∑
 
         // ìGÇÃèÓïÒÇÃê›íË
-        enemyController.SetUpEnemyController(pathdatas);
+        enemyController.SetUpEnemyController(pathdatas, gameManager);
               
          // ìGÇÃà⁄ìÆåoòHÇÃÉâÉCÉìï\é¶Çê∂ê¨ÇÃèÄîı
         StartCoroutine(PreparateCreatePathLine(pathdatas, enemyController));

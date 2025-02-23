@@ -25,6 +25,8 @@ public class EnemyController : MonoBehaviour
 
     private Animator anim; // Animator コンポーネントの取得用
 
+    private GameManager gameManager;
+
     public int attackPower;
 
     //private Vector3 currentPos; // 敵キャラの現在の位置情報
@@ -32,8 +34,9 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
 
     // 敵の設定
-    public void SetUpEnemyController(Vector3[] pathsData) //　<=　☆①　public 修飾子を追加し、Start メソッドを SetUpEnemyController メソッドに変更し、引数を追加します。
+    public void SetUpEnemyController(Vector3[] pathsData, GameManager gameManager) //　<=　☆①　public 修飾子を追加し、Start メソッドを SetUpEnemyController メソッドに変更し、引数を追加します。
     {
+        this.gameManager = gameManager;
 
         hp = maxHp;
 
@@ -151,6 +154,10 @@ public class EnemyController : MonoBehaviour
         // TODO SEの処理
 
         // TODO 破壊時のエフェクトの生成や関連する処理
+
+        // 敵を破壊した数をカウントアップする
+        // さらにこのメソッド内で、敵の情報を管理している List からこの敵の情報を削除もしてもらうために、EnemyController の情報を引数で渡している
+        gameManager.CountUpDestroyEnemyCount(this);
 
         // 敵キャラの破壊
         Destroy(gameObject);

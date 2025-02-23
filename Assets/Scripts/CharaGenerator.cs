@@ -152,7 +152,7 @@ public class CharaGenerator : MonoBehaviour
         chara.transform.position = new Vector2(chara.transform.position.x + 0.5f, chara.transform.position.y + 0.5f);
 
         // TODO ƒLƒƒƒ‰‚Ìİ’è
-        //chara.SetUpChara(charaData, gameManager);
+        chara.SetUpChara(charaData, gameManager);
 
         Debug.Log(charaData.charaName);
 
