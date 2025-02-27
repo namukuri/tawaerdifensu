@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro; // TextMeshProを利用するための名前空間
 using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private Text txtCost;
+    private TMP_Text txtCost;
 
     // カレンシーの表示更新
     public void UpdateDisplayCurrency()
     {
-        txtCost.text = GameData.Instance.currency.ToString();
+        txtCost.text = GameData.instance.currency.ToString();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour
 {
-    public static GameData Instance;
+    public static GameData instance;
 
     [Header("コスト用の通貨")]
     public int currency;
@@ -13,16 +13,16 @@ public class GameData : MonoBehaviour
     public int maxCurrency;
 
     [Header("加算までの待機時間")]
-    public int currencyInrtervalTime;
+    public int currencyIntervalTime;
 
     [Header("加算値")]
     public int addCurrencyPoint;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

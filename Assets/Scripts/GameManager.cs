@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private CharaGenerator charaGenerator;
-    
+
     public bool isEnemyGenerate;  // ここに EnemyGenerator スクリプト側の変数を４つ移管します
 
     public int generateIntervalTime;
@@ -32,9 +31,11 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState; // 現在の GameState の状態。上記の GameState の列挙子が１つだけ代入されるので、他の GameState と競合しない
 
     [SerializeField]
-    private List<EnemyController>enemiesList = new List<EnemyController>(); //　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
+    private List<EnemyController> enemiesList = new List<EnemyController>(); //　敵の情報を一元化して管理するための変数。EnemyController 型で扱う
 
     private int destoroyEnemyCount; //  敵を破壊した数のカウント用
+
+    public UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(enemyGenerator.PreparateEnemyGenerate(this));
 
         // TODO カレンシーの自動獲得処理の開始
+        StartCoroutine(TimeToCurrency());
     }
 
     // 敵の情報を List に追加
@@ -133,7 +135,7 @@ public class GameManager : MonoBehaviour
     public void JudgeGameClear()
     {
         // 生成数を超えているか
-        if(destoroyEnemyCount >= maxEnemyCount)
+        if (destoroyEnemyCount >= maxEnemyCount)
         {
             Debug.Log("ゲームクリア");
 
@@ -141,5 +143,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // 時間の経過に応じてカレンシーを加算
+    public IEnumerator TimeToCurrency()
+    {
+        int timer = 0;
+
+        // ゲームプレイ中のみ加算
+        while (currentGameState == GameState.Play)
+        {
+            timer++;
+
+            // 規定の時間が経過し、カレンシーが最大値でなければ
+            if (timer > GameData.instance.currencyIntervalTime && GameData.instance.currency < GameData.instance.maxCurrency)
+            {
+                timer = 0;
+
+                // 最大値以下になるようにカレンシーを加算
+                GameData.instance.currency = Mathf.Clamp(GameData.instance.currency += GameData.instance.addCurrencyPoint, 0, GameData.instance.maxCurrency);
+                uiManager.UpdateDisplayCurrency();
+            }
+
+            yield return null;
+        }
+
+    }
 }
 

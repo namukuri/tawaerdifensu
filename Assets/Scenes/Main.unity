@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22f154911ae7b6949a4ede80838abdaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtCost: {fileID: 0}
+  txtCost: {fileID: 1322056057}
 --- !u!4 &213256488
 Transform:
   m_ObjectHideFlags: 0
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currency: 0
   maxCurrency: 1000
-  currencyInrtervalTime: 60
+  currencyIntervalTime: 60
   addCurrencyPoint: 100
 --- !u!4 &313450282
 Transform:
@@ -8624,6 +8624,7 @@ MonoBehaviour:
   maxEnemyCount: 5
   currentGameState: 0
   enemiesList: []
+  uiManager: {fileID: 213256487}
 --- !u!4 &1856785900
 Transform:
   m_ObjectHideFlags: 0
