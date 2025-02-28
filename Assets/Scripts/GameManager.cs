@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     public UIManager uiManager;
 
+    [SerializeField]
+    private List<CharaController> charaList = new List<CharaController>(); // 配置したキャラの情報を一元化して管理するための変数。CharaController 型で扱う
+
     // Start is called before the first frame update
     void Start()
     {
@@ -160,12 +163,33 @@ public class GameManager : MonoBehaviour
 
                 // 最大値以下になるようにカレンシーを加算
                 GameData.instance.currency = Mathf.Clamp(GameData.instance.currency += GameData.instance.addCurrencyPoint, 0, GameData.instance.maxCurrency);
+
+                // カレンシーの画面表示を更新
                 uiManager.UpdateDisplayCurrency();
             }
 
             yield return null;
         }
 
+    }
+
+    // 選択したキャラの情報を List に追加
+    public void AddChraList(CharaController chara)
+    {
+        charaList.Add(chara);
+    }
+
+    // 選択したキャラを破棄し、情報を List から削除
+    public void RemoveCharaList(CharaController chara)
+    {
+        Destroy(chara.gameObject);
+        charaList.Remove(chara);
+    }
+
+    // 現在の配置しているキャラの数の取得
+    public int GetPlacementCharaCount()
+    {
+        return charaList.Count;
     }
 }
 
