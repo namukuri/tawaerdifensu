@@ -23,6 +23,7 @@ public class SelectCharaDetail : MonoBehaviour
         this.charaData = charaData;
 
         // TODO ボタンを押せない状態に切り替える
+        ChangeActivateButton(false);
 
         imgChara.sprite = this.charaData.charaSprite;
 
@@ -30,6 +31,7 @@ public class SelectCharaDetail : MonoBehaviour
         btnSelectCharaDetail.onClick.AddListener(OnClickSelectCharaDetail);
 
         // TODO コストに応じてボタンを押せるかどうかを切り替える
+        ChangeActivateButton(JudgePermissonCost(GameData.instance.currency));
 
     }
 
@@ -41,5 +43,37 @@ public class SelectCharaDetail : MonoBehaviour
         // タップした SelectCharaDetail の情報をポップアップに送る
         // TODO 次の手順で、PlacementCharaSelectPop スクリプト内に SetSelectCharaDetail メソッドを作成するため、それまでコメントアウトしておいてください
         placementCharaSelectPop.SetSelectCharaDetail(charaData);
+    }
+
+    // ボタンを押せる状態の切り替え
+    public void ChangeActivateButton(bool isSwich)
+    {
+        btnSelectCharaDetail.interactable = isSwich;
+    }
+    // コストが支払えるか確認する
+    public bool JudgePermissonCost(int value)
+    {
+        Debug.Log("コスト確認"); //　<=　たくさん表示されることになりますので、処理の確認が取れたらコメントアウトしてください。
+
+        // コストが支払える場合
+        if (charaData.cost <= value)
+        {
+            // ボタンを押せる状態にする
+            ChangeActivateButton(true);
+            return true;
+        }
+        return false;
+    }
+
+    // ボタンの状態の取得(今後のために実装
+    public bool GetActivateButtonState()
+    {
+        return btnSelectCharaDetail.interactable;
+    }
+
+    // CharaData の取得(今後のために実装)
+    public CharaData GetCharaData()
+    {
+        return charaData;
     }
 }
