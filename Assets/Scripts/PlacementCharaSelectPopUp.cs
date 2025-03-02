@@ -36,7 +36,6 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     [SerializeField]
     private Text txtPickupCharaMaxAttackCount;
 
-
     [SerializeField]
     private SelectCharaDetail selectCharaDetailPrefab; //キャラのボタン用のプレファブをアサインする
 
@@ -83,8 +82,8 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
             }
         }
 
-            // 各ボタンにメソッドを登録
-            btnChooseChara.onClick.AddListener(OnClickSubmitChooseChara);
+        // 各ボタンにメソッドを登録
+        btnChooseChara.onClick.AddListener(OnClickSubmitChooseChara);
 
         btnClosePopUp.onClick.AddListener(OnClickClosePopUp);
 
@@ -106,6 +105,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     {
 
         // TODO 各キャラのボタンの制御
+        CheckAllCharaButtons();
 
         // ポップアップの表示
         canvasGroup.DOFade(1.0f, 0.5f);
@@ -115,6 +115,10 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     private void OnClickSubmitChooseChara()
     {
         // TODO コストの支払いが可能か最終確認
+        if (chooseCharaData.cost > GameData.instance.currency)
+        {
+            return;
+        }
 
         // TODO 選択しているキャラの生成
         charaGenerator.CreateChooseChara(chooseCharaData);
@@ -134,6 +138,7 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
     private void HidePopUp()
     {
         // TODO 各キャラのボタンの制御
+        CheckAllCharaButtons();
 
         // ポップアップの非表示
         canvasGroup.DOFade(0, 0.5f).OnComplete(() => charaGenerator.InactivatePlacementCharaSelectPopUp());
@@ -157,6 +162,20 @@ public class PlacementCharaSelectPopUp : MonoBehaviour
 
         txtPickupCharaMaxAttackCount.text = charaData.maxAttackCount.ToString();
 
+    }
+
+    // コストが支払えるかどうかを 各 SelectCharaDetail で確認してボタン押下機能を切り替え
+    private void CheckAllCharaButtons()
+    {
+        // 配置できるキャラがいる場合のみ処理を行う
+        if(selectCharaDetailsList.Count > 0) 
+        {
+            // 各キャラのコストとカレンシーを確認して、配置できるかどうかを判定してボタンの押下有無を設定
+            for (int i = 0; i < selectCharaDetailsList.Count; i++)
+            {
+                selectCharaDetailsList[i].ChangeActivateButton(selectCharaDetailsList[i].JudgePermissionCost(GameData.instance.currency));
+            }
+        }
     }
 
 }

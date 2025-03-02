@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<EnemyController> enemiesList = new List<EnemyController>(); //@“G‚Ìî•ñ‚ğˆêŒ³‰»‚µ‚ÄŠÇ—‚·‚é‚½‚ß‚Ì•Ï”BEnemyController Œ^‚Åˆµ‚¤
 
-    private int destoroyEnemyCount; //  “G‚ğ”j‰ó‚µ‚½”‚ÌƒJƒEƒ“ƒg—p
+    private int destroyEnemyCount; //  “G‚ğ”j‰ó‚µ‚½”‚ÌƒJƒEƒ“ƒg—p
 
     public UIManager uiManager;
 
@@ -126,9 +126,9 @@ public class GameManager : MonoBehaviour
         RemoveEnemyList(enemyController);
 
         // “G‚ğ”j‰ó‚µ‚½”‚ğ‰ÁZ
-        destoroyEnemyCount++;
+        destroyEnemyCount++;
 
-        Debug.Log("”j‰ó‚µ‚½“G‚Ì”:" + destoroyEnemyCount);
+        Debug.Log("”j‰ó‚µ‚½“G‚Ì”:" + destroyEnemyCount);
 
         // ƒQ[ƒ€ƒNƒŠƒA”»’è
         JudgeGameClear();
@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
     public void JudgeGameClear()
     {
         // ¶¬”‚ğ’´‚¦‚Ä‚¢‚é‚©
-        if (destoroyEnemyCount >= maxEnemyCount)
+        if (destroyEnemyCount >= maxEnemyCount)
         {
             Debug.Log("ƒQ[ƒ€ƒNƒŠƒA");
 
@@ -174,7 +174,7 @@ public class GameManager : MonoBehaviour
     }
 
     // ‘I‘ğ‚µ‚½ƒLƒƒƒ‰‚Ìî•ñ‚ğ List ‚É’Ç‰Á
-    public void AddChraList(CharaController chara)
+    public void AddCharaList(CharaController chara)
     {
         charaList.Add(chara);
     }

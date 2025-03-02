@@ -20,7 +20,7 @@ public class GameData : MonoBehaviour
 
     public int maxCharaPlacementCount; // ”z’u‚Å‚«‚éƒLƒƒƒ‰‚ÌãŒÀ”
 
-    private void Awake()
+    void Awake()
     {
         if (instance == null)
         {

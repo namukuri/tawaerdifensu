@@ -31,7 +31,7 @@ public class SelectCharaDetail : MonoBehaviour
         btnSelectCharaDetail.onClick.AddListener(OnClickSelectCharaDetail);
 
         // TODO コストに応じてボタンを押せるかどうかを切り替える
-        ChangeActivateButton(JudgePermissonCost(GameData.instance.currency));
+        ChangeActivateButton(JudgePermissionCost(GameData.instance.currency));
 
     }
 
@@ -46,12 +46,12 @@ public class SelectCharaDetail : MonoBehaviour
     }
 
     // ボタンを押せる状態の切り替え
-    public void ChangeActivateButton(bool isSwich)
+    public void ChangeActivateButton(bool isSwitch)
     {
-        btnSelectCharaDetail.interactable = isSwich;
+        btnSelectCharaDetail.interactable = isSwitch;
     }
     // コストが支払えるか確認する
-    public bool JudgePermissonCost(int value)
+    public bool JudgePermissionCost(int value)
     {
         Debug.Log("コスト確認"); //　<=　たくさん表示されることになりますので、処理の確認が取れたらコメントアウトしてください。
 

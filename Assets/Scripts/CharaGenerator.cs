@@ -166,7 +166,7 @@ public class CharaGenerator : MonoBehaviour
         Debug.Log(charaData.charaName);
 
         // TODO ƒLƒƒƒ‰‚ð List ‚É’Ç‰Á
-        gameManager.AddChraList(chara);
+        gameManager.AddCharaList(chara);
     }
 
 

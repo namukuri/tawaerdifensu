@@ -482,6 +482,7 @@ MonoBehaviour:
   maxCurrency: 1000
   currencyIntervalTime: 60
   addCurrencyPoint: 100
+  maxCharaPlacementCount: 10
 --- !u!4 &313450282
 Transform:
   m_ObjectHideFlags: 0
@@ -8625,6 +8626,7 @@ MonoBehaviour:
   currentGameState: 0
   enemiesList: []
   uiManager: {fileID: 213256487}
+  charaList: []
 --- !u!4 &1856785900
 Transform:
   m_ObjectHideFlags: 0
