@@ -76,38 +76,42 @@ public class CharaController : MonoBehaviour
         {
 
             // TODO ゲームプレイ中のみ攻撃する
-
-            timer++;
-
-            // 攻撃のための待機時間が経過したら
-            if (timer > intervalAttackTime)
+            if (gameManager.currentGameState == GameManager.GameState.Play)
             {
-                // 次の攻撃に備えて、待機時間のタイマーをリセット
-                timer = 0;
+                timer++;
 
-                // ここで null 判定
-                if(enemy == null)
+                // 攻撃のための待機時間が経過したら
+                if (timer > intervalAttackTime)
                 {
-                    // 敵がいないなら攻撃状態を解除してループを抜ける
-                    isAttack = false;
+                    // 次の攻撃に備えて、待機時間のタイマーをリセット
+                    timer = 0;
 
-                    break;
-                }
+                    // ここで null 判定
+                    if (enemy == null)
+                    {
+                        // 敵がいないなら攻撃状態を解除してループを抜ける
+                        isAttack = false;
 
-                // 攻撃
-                Attack();
+                        break;
+                    }
 
-                // TODO 攻撃回数関連の処理をここに記述する
-                attackCount--;
+                    // 攻撃
+                    Attack();
 
-                // TODO 残り攻撃回数の表示更新
-                UpdateDisplayAttackCount();
+                    // TODO 攻撃回数関連の処理をここに記述する
+                    attackCount--;
 
-                // 攻撃回数がなくなったら
-                if (attackCount <= 0)
-                {
-                    // キャラ破壊
-                    Destroy(gameObject);
+                    // TODO 残り攻撃回数の表示更新
+                    UpdateDisplayAttackCount();
+
+                    // 攻撃回数がなくなったら
+                    if (attackCount <= 0)
+                    {
+                        // キャラ破壊
+                        Destroy(gameObject);
+                        // キャラのリストから情報を削除
+                        gameManager.RemoveCharaList(this);
+                    }
                 }
             }
 
